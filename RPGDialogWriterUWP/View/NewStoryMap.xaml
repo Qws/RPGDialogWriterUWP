@@ -19,7 +19,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Map name" FontSize="40" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox PlaceholderText="name of map" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBox PlaceholderText="name of map" Width="500" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -35,16 +35,7 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Story chapter" FontSize="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" PlaceholderText="name of the chapter" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Grid>
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Description" FontSize="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <RichTextBlock Grid.Column="1" Height="170" Width="600" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+                <TextBox Grid.Column="1" Width="500" PlaceholderText="name of the chapter" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -52,13 +43,27 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Author" FontSize="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" PlaceholderText="(nick)name of Author" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Width="500" PlaceholderText="(nick)name of Author" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
+
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Description" FontSize="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Height="170" Width="600" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            </Grid>
+
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Next" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Content="Back" Grid.Column="0" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Content="Next" Name="btnCreateStory" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>
