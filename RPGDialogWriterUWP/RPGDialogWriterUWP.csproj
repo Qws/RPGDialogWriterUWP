@@ -108,6 +108,7 @@
     <Compile Include="Model\MapModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InteractableObjectsViewModel.cs" />
+    <Compile Include="ViewModel\LoadJSONViewModel.cs" />
     <Compile Include="ViewModel\MapStoryViewModel.cs" />
     <Compile Include="View\InteractableObjectsMenu.xaml.cs">
       <DependentUpon>InteractableObjectsMenu.xaml</DependentUpon>

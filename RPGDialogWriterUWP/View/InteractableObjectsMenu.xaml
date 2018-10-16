@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <TextBlock FontSize="40" Text="Interactable Objects" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -25,8 +26,11 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
             </ListView>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Name="btnBack" Content="Back" Width="100" FontSize="30" HorizontalAlignment="Center" Click="btnBack_Click"/>
         </Grid>
     </Grid>
 </Page>

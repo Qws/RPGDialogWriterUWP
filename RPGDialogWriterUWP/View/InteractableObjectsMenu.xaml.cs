@@ -35,5 +35,10 @@ namespace RPGDialogWriterUWP.View
             //};
             this.InitializeComponent();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(View.NewMapStoryView));
+        }
     }
 }

@@ -20,7 +20,7 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Button Name="btnNewStoryMapChapter" Content="New" Grid.Row="0" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnNewStoryMapChapter_Click"/>
-            <Button Content="Load" Grid.Row="1" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Name="btnLoadNewMapStory" Content="Load" Grid.Row="1" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnLoadNewMapStoryAsync_Click"/>
 
         </Grid>
     </Grid>

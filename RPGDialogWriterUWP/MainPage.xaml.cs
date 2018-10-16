@@ -22,14 +22,25 @@ namespace RPGDialogWriterUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        ViewModel.LoadJSONViewModel jSONViewModel;
+
+
+        
+
         public MainPage()
         {
+            jSONViewModel = new ViewModel.LoadJSONViewModel();
             this.InitializeComponent();
         }
 
         private void btnNewStoryMapChapter_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(RPGDialogWriterUWP.View.NewMapStoryView));
+        }
+
+        private void btnLoadNewMapStoryAsync_Click(object sender, RoutedEventArgs e)
+        {
+            jSONViewModel.StartFilePicker();
         }
     }
 }
