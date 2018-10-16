@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPGDialogWriterUWP.Model
 {
-    class MapModel
+    class MapStoryModel
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public MapModel MapModel { get; set; }
+        public StoryModel StoryModel{ get; set; }
     }
 }

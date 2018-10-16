@@ -29,7 +29,7 @@ namespace RPGDialogWriterUWP
 
         private void btnNewStoryMapChapter_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RPGDialogWriterUWP.View.NewStoryMap));
+            Frame.Navigate(typeof(RPGDialogWriterUWP.View.NewMapStoryView));
         }
     }
 }

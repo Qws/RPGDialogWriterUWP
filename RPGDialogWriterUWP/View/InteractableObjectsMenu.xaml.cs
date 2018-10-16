@@ -23,12 +23,16 @@ namespace RPGDialogWriterUWP.View
     public sealed partial class InteractableObjectsMenu : Page
     {
         ViewModel.MapStoryViewModel MapStoryViewModel;
-        ViewModel.InteractableObjectsViewModel InteractableObjectsViewModel;
 
         public InteractableObjectsMenu()
         {
             MapStoryViewModel = new ViewModel.MapStoryViewModel();
-            InteractableObjectsViewModel = new ViewModel.InteractableObjectsViewModel();
+            //InteractableObjectsViewModel = new ViewModel.InteractableObjectsViewModel();
+            //InteractableObjectsViewModel.InteractableObjectCommand = () => 
+            //{
+            //    var param =  ListViewInteractableObjects.SelectedItem as Model.InteractableObjectModel;
+            //    Frame.Navigate(typeof(View.InteractableObjectViewer));
+            //};
             this.InitializeComponent();
         }
     }

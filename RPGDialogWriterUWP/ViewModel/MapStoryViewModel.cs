@@ -15,33 +15,13 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class MapStoryViewModel : INotifyPropertyChanged
     {
-        public Model.StoryChapterModel StoryChapterModel { get; set; }
-        public string Author { get; set; }
-
-        private Model.MapModel mapModel;
-        private Model.StoryChapterModel storyChapterModel;
-        private string author;
-        private DateTime datetime;
+        public Model.MapStoryModel MapStoryModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MapStoryViewModel()
         {
-            
-        }
-
-        private async void CreateMapStoryJson()
-        {
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync(mapModel.Name + "_" + storyChapterModel.Title + ".json", Windows.Storage.CreationCollisionOption.ReplaceExisting);
- 
-        }
-
-        private async Task CreateJSONFileAsync()
-        {
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync( mapModel.Name + "_" +storyChapterModel.Title + ".json", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            
+            MapStoryModel = new Model.MapStoryModel();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGDialogWriterUWP.Model
 {
-    class StoryChapterModel
+    class StoryModel
     {
         public string Title { get; set; }
         public string Description { get; set; }

@@ -101,15 +101,19 @@
     <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\ChoiceModel.cs" />
     <Compile Include="Model\InteractableObjectModel.cs" />
+    <Compile Include="Model\MapStoryModel.cs" />
     <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\QuestionModel.cs" />
-    <Compile Include="Model\StoryChapterModel.cs" />
+    <Compile Include="Model\StoryModel.cs" />
     <Compile Include="Model\MapModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InteractableObjectsViewModel.cs" />
     <Compile Include="ViewModel\MapStoryViewModel.cs" />
     <Compile Include="View\InteractableObjectsMenu.xaml.cs">
       <DependentUpon>InteractableObjectsMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InteractableObjectViewer.xaml.cs">
+      <DependentUpon>InteractableObjectViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NewStoryMap.xaml.cs">
       <DependentUpon>NewStoryMap.xaml</DependentUpon>
@@ -144,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\InteractableObjectViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NewStoryMap.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,7 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.6</Version>
+      <Version>6.1.9</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

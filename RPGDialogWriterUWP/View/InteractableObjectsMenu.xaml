@@ -17,12 +17,11 @@
             <TextBlock FontSize="40" Text="Interactable Objects" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView x:Name="InteractableObjects" 
-                      ItemsSource="{x:Bind MapStoryViewModel.StoryChapterModel.InteractableObjects, Mode=TwoWay}"
-                      SelectionChanged="{x:Bind MapStoryViewModel.StoryChapterModel., Mode=TwoWay}">
+            <ListView x:Name="ListViewInteractableObjects" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
+                            <TextBox Text="Hey"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
