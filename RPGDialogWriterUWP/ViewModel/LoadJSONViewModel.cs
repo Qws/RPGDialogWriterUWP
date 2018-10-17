@@ -33,14 +33,25 @@ namespace RPGDialogWriterUWP.ViewModel
             picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
             picker.FileTypeFilter.Add(".json");
 
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            StorageFile file;
+            file = await picker.PickSingleFileAsync();
             if (file != null)
-            {                
-                if(file.FileType == ".json")
+            {
+                if (file.FileType == ".json")
                 {
-                    
-                    this.MapStory = await JSONtoModels(file);
-                    ErrorMessage = this.MapStory.StoryModel.Title;
+                    if (MapStory != null)
+                    {
+
+                        this.MapStory.StoryModel = new Model.StoryModel();
+                        this.MapStory.MapModel = new Model.MapModel();
+                        this.MapStory = await JSONtoModels(file);
+                        ErrorMessage = this.MapStory.StoryModel.Title;
+                    }
+
+                    else
+                    {
+                        ErrorMessage = "MapStory is null... tell it to the devs of the software";
+                    }
                     //changeWindowDelegate(this.MapStory);
                 }
                 else
@@ -57,22 +68,25 @@ namespace RPGDialogWriterUWP.ViewModel
 
         private async Task<Model.MapStoryModel> JSONtoModels(Windows.Storage.StorageFile file)
         {
-            IRandomAccessStreamWithContentType data = await file.OpenReadAsync();
-            //var dialog = new MessageDialog(data);
-            //await dialog.ShowAsync();
-            string  textdata = data.ToString();
+            var dialog = new MessageDialog("");
+            if (file == null)
+            {
+                dialog = new MessageDialog("Error, file is null!");
+                await dialog.ShowAsync();
+            }
 
-            StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            //file.Path
-            //Windows.Storage.StorageFile sampleFile =
-            //await storageFolder.GetFileAsync("sample.txt");
-            var dialog = new MessageDialog(textdata);
-            await dialog.ShowAsync();
-
-            JsonObject jsonObj = new JsonObject();
-            jsonObj = JsonObject.Parse(textdata);
-            MapStory.StoryModel.Title = jsonObj.GetNamedString("Title");
-            return MapStory;
+            if (MapStory != null)
+            {
+                this.MapStory.StoryModel.Title = "LOL";
+                return this.MapStory;
+            }
+            else
+            {
+                dialog = new MessageDialog("Error, MapStory is null!");
+                await dialog.ShowAsync();
+                MapStory = new Model.MapStoryModel();
+                return MapStory;
+            }
         }
     }
 }
