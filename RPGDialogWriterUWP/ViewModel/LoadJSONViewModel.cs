@@ -116,18 +116,36 @@ namespace RPGDialogWriterUWP.ViewModel
                                 Model.QuestionModel questionModel = new Model.QuestionModel();
                                 questionModel.Name = dialogJsonObject.GetNamedValue("name").ToString();
                                 questionModel.Question = dialogJsonObject.GetNamedValue("question").ToString();
-                                questionModel.Emote = dialogJsonObject.GetNamedValue("emote").ToString();
-                                foreach (var choiceJson in dialogJsonObject.GetNamedObject("choices"))
+                                if(dialogJsonObject.ContainsKey("emote"))
                                 {
-                                    JsonObject jsonObjectChoice = JsonObject.Parse(choiceJson.Value.ToString());
-                                    Model.ChoiceModel choiceModel = new Model.ChoiceModel();
-                                    choiceModel.Name = jsonObjectChoice.GetNamedValue("name").ToString();
-                                    choiceModel.Target = jsonObjectChoice.GetNamedValue("target").ToString();
-                                    choiceModel.Description = jsonObjectChoice.GetNamedValue("description").ToString();
-                                    if(jsonObjectChoice.ContainsKey("branch"))
+                                    questionModel.Emote = dialogJsonObject.GetNamedValue("emote").ToString();
+                                }
+                                JsonObject jsonObjChoices = new JsonObject();
+
+                                if (JsonObject.TryParse(dialogJsonObject.GetNamedValue("choices").ToString(), out jsonObjChoices))
+                                {
+                                    foreach (var choiceJson in jsonObjChoices)
                                     {
-                                        choiceModel.Branch = jsonObjectChoice.GetNamedValue("branch").ToString();
+                                        JsonObject jsonObjectChoice = JsonObject.Parse(choiceJson.Value.ToString());
+                                        Model.ChoiceModel choiceModel = new Model.ChoiceModel();
+                                        choiceModel.Name = jsonObjectChoice.GetNamedValue("name").ToString();
+                                        choiceModel.Description = jsonObjectChoice.GetNamedValue("description").ToString();
+                                        //Target is optional.
+                                        if (jsonObjectChoice.ContainsKey("target"))
+                                        {
+                                            choiceModel.Target = jsonObjectChoice.GetNamedValue("target").ToString();
+                                        }
+                                        //Branch is optional... what's the real difference tho?
+                                        if (jsonObjectChoice.ContainsKey("branch"))
+                                        {
+                                            choiceModel.Branch = jsonObjectChoice.GetNamedValue("branch").ToString();
+                                        }
                                     }
+                                }
+                                else
+                                {
+                                    MessageDialog msgbox = new MessageDialog("Error! There should be Choices jsonObject in the question JsonObject.");
+                                    await msgbox.ShowAsync();
                                 }
                             }
 
