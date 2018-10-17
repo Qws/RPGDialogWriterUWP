@@ -8,6 +8,10 @@ namespace RPGDialogWriterUWP.Model
 {
     class InteractableObjectModel
     {
+        public InteractableObjectModel()
+        {
+            this.Branches = new List<BranchModel>();
+        }
         public string Name
         {
             get;

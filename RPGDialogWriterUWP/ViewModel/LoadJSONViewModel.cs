@@ -89,8 +89,6 @@ namespace RPGDialogWriterUWP.ViewModel
                 foreach (var obj in interactableObjects)
                 {
                     //Interactable Object (characters, enemies, bosses, friends, talking chair, etc)
-                    dialog = new MessageDialog("obj key: " + obj.Key + " obj.value: "+obj.Value);
-                    await dialog.ShowAsync();
                     interactableObjectModel.Name = obj.Key;
                     JsonObject jsonInteracatbleObject = new JsonObject();
                     jsonInteracatbleObject = JsonObject.Parse(obj.Value.ToString());
@@ -100,14 +98,16 @@ namespace RPGDialogWriterUWP.ViewModel
                         //Branch has a name.
                         Model.BranchModel branchModel = new Model.BranchModel();
                         branchModel.Name = branch.Key;
-                        string branchdata = branch.Value.GetString().ToString();
-                        JsonObject jsonBrancheInteraction = JsonObject.Parse(branchdata);
+                        JsonObject jsonObjBranch = new JsonObject();
+                        jsonObjBranch = JsonObject.Parse(branch.Value.ToString());
+
+
 
                         //BranchModel added into the InteractableObjectModel. This process will repeatedly for the other branches.
                         interactableObjectModel.Branches.Add(branchModel);
                         //var dialogJson is not really a true JsonObject, it has only 2 properties (Key and Value).
                         //Those values have to be converted to Strings from a so called: "KeyValuePair".
-                        foreach (var dialogJson in jsonBrancheInteraction)
+                        foreach (var dialogJson in jsonObjBranch)
                         {
                             JsonObject dialogJsonObject = JsonObject.Parse(dialogJson.Value.ToString());
 
