@@ -129,7 +129,13 @@ namespace RPGDialogWriterUWP.ViewModel
                                         JsonObject jsonObjectChoice = JsonObject.Parse(choiceJson.Value.ToString());
                                         Model.ChoiceModel choiceModel = new Model.ChoiceModel();
                                         choiceModel.Name = jsonObjectChoice.GetNamedValue("name").ToString();
-                                        choiceModel.Description = jsonObjectChoice.GetNamedValue("description").ToString();
+
+                                        //Recommend to have this... if it's empty, make a notification in the GUI.
+                                        if(jsonObjChoices.ContainsKey("description"))
+                                        {
+
+                                            choiceModel.Description = jsonObjectChoice.GetNamedValue("description").ToString();
+                                        }
                                         //Target is optional.
                                         if (jsonObjectChoice.ContainsKey("target"))
                                         {
