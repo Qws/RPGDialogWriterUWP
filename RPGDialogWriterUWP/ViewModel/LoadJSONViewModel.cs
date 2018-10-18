@@ -44,6 +44,7 @@ namespace RPGDialogWriterUWP.ViewModel
 
                         this.MapStory.StoryModel = new Model.StoryModel();
                         this.MapStory.MapModel = new Model.MapModel();
+                        this.MapStory.StoryModel.InteractableObjects = new List<Model.InteractableObjectModel>();
                         this.MapStory = await JSONtoModels(file);
                         ErrorMessage = this.MapStory.StoryModel.Title;
                     }
@@ -68,6 +69,9 @@ namespace RPGDialogWriterUWP.ViewModel
 
         private async Task<Model.MapStoryModel> JSONtoModels(Windows.Storage.StorageFile file)
         {
+            Model.StoryModel storyModel = new Model.StoryModel();
+            Model.MapModel mapModel = new Model.MapModel();
+
             var dialog = new MessageDialog("");
             if (file != null)
             {
@@ -82,12 +86,13 @@ namespace RPGDialogWriterUWP.ViewModel
                 //JsonObject, to access Json Api for Interactable Object.
                 JsonObject interactableObjects = new JsonObject();
 
-                //Model, which will be put into the MapStory Model.
-                Model.InteractableObjectModel interactableObjectModel = new Model.InteractableObjectModel();
                 interactableObjects = jsonObj.GetNamedObject("interactableobjects");
                 //Multiple Interactable Objects usually. Has to dismantle and save them all into objects of the major Model: MapStory Model.
                 foreach (var obj in interactableObjects)
                 {
+
+                    Model.InteractableObjectModel interactableObjectModel = new Model.InteractableObjectModel();
+
                     //Interactable Object (characters, enemies, bosses, friends, talking chair, etc)
                     interactableObjectModel.Name = obj.Key;
                     JsonObject jsonInteracatbleObject = new JsonObject();
@@ -170,6 +175,9 @@ namespace RPGDialogWriterUWP.ViewModel
                         //continue here ->
                         //extra info: go through another foreach. This time for the real dialogs.
                     }
+
+                    //Interactable Object is filled... now it gets added into the MapStory.
+                    this.MapStory.StoryModel.InteractableObjects.Add(interactableObjectModel);
                 }
             }
 
@@ -186,7 +194,6 @@ namespace RPGDialogWriterUWP.ViewModel
 
             if (MapStory != null)
             {
-                this.MapStory.StoryModel.Title = "LOL";
                 return this.MapStory;
             }
             else
