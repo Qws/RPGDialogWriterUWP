@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Collections.ObjectModel;
+
 namespace RPGDialogWriterUWP.Model
 {
     class InteractableObjectModel
     {
         public InteractableObjectModel()
         {
-            this.Branches = new List<BranchModel>();
+            this.Branches = new ObservableCollection<BranchModel>();
         }
         public string Name
         {
             get;
             set;
         }
-        public List<BranchModel> Branches { get; set; }
+        public ObservableCollection<BranchModel> Branches { get; set; }
     }
 }   
