@@ -43,9 +43,6 @@ namespace RPGDialogWriterUWP.View
             {
 
                 ioVM = new ViewModel.InteractableObjectsViewModel(e.Parameter as Model.MapStory);
-                Windows.UI.Popups.MessageDialog messageDialog = new Windows.UI.Popups.MessageDialog("Ye! It's a StoryModel!");
-                await messageDialog.ShowAsync();
-                //this.storyModel = e.Parameter as Model.Story;
                 
             }
 
