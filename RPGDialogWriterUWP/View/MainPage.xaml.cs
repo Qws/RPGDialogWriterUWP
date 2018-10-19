@@ -41,6 +41,7 @@ namespace RPGDialogWriterUWP
         private void btnLoadNewMapStoryAsync_Click(object sender, RoutedEventArgs e)
         {
             jSONViewModel.StartFilePicker();
+            Frame.Navigate(typeof(View.InteractableObjectsMenu), jSONViewModel.MapStory);
         }
     }
 }
