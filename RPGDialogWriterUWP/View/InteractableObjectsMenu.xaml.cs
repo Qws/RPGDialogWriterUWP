@@ -38,7 +38,7 @@ namespace RPGDialogWriterUWP.View
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(View.NewMapStoryView));
+            Frame.Navigate(typeof(MainPage));
         }
     }
 }
