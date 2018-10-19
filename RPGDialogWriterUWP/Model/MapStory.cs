@@ -8,7 +8,7 @@ namespace RPGDialogWriterUWP.Model
 {
     class MapStory
     {
-        public Map MapModel { get; set; }
-        public Story StoryModel{ get; set; }
+        public Map Map { get; set; }
+        public Story Story{ get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace RPGDialogWriterUWP.Model
 {
     class Question : Message
     {
-        public string Question { get; set; }
+        public string Text { get; set; }
         public List<Choice> Choices { get; set; }
     }
 }

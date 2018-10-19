@@ -22,12 +22,11 @@ namespace RPGDialogWriterUWP.View
     /// </summary>
     public sealed partial class InteractableObjectsMenu : Page
     {
-        ViewModel.MapStoryViewModel MapStoryViewModel;
-        Model.Story storyModel = new Model.Story();
+        ViewModel.InteractableObjectsViewModel ioVM;
 
         public InteractableObjectsMenu()
         {
-            MapStoryViewModel = new ViewModel.MapStoryViewModel();
+            ioVM = new ViewModel.InteractableObjectsViewModel();
             //InteractableObjectsViewModel = new ViewModel.InteractableObjectsViewModel();
             //InteractableObjectsViewModel.InteractableObjectCommand = () => 
             //{
@@ -42,9 +41,12 @@ namespace RPGDialogWriterUWP.View
             base.OnNavigatedTo(e);
             if(e.Parameter is Model.MapStory)
             {
+
+                ioVM = new ViewModel.InteractableObjectsViewModel(e.Parameter as Model.MapStory);
                 Windows.UI.Popups.MessageDialog messageDialog = new Windows.UI.Popups.MessageDialog("Ye! It's a StoryModel!");
                 await messageDialog.ShowAsync();
-                this.storyModel = e.Parameter as Model.Story;
+                //this.storyModel = e.Parameter as Model.Story;
+                
             }
 
             else

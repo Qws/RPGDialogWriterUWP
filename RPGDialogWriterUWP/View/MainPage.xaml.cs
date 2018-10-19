@@ -35,13 +35,13 @@ namespace RPGDialogWriterUWP
 
         private void btnNewStoryMapChapter_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RPGDialogWriterUWP.View.NewMapStoryView));
+            Frame.Navigate(typeof(View.NewMapStoryView));
         }
 
-        private void btnLoadNewMapStoryAsync_Click(object sender, RoutedEventArgs e)
+        private async void btnLoadNewMapStoryAsync_Click(object sender, RoutedEventArgs e)
         {
-            jSONViewModel.StartFilePicker();
-            Frame.Navigate(typeof(View.InteractableObjectsMenu), jSONViewModel.MapStory);
+            Model.MapStory mapStory = await jSONViewModel.StartFilePicker();
+            Frame.Navigate(typeof(View.InteractableObjectsMenu), mapStory);
         }
     }
 }

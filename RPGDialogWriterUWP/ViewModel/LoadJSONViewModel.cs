@@ -26,7 +26,7 @@ namespace RPGDialogWriterUWP.ViewModel
             MapStory = new Model.MapStory();
         }
 
-        public async void StartFilePicker()
+        public async Task<Model.MapStory> StartFilePicker()
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
@@ -42,11 +42,11 @@ namespace RPGDialogWriterUWP.ViewModel
                     if (MapStory != null)
                     {
 
-                        this.MapStory.StoryModel = new Model.Story();
-                        this.MapStory.MapModel = new Model.Map();
-                        this.MapStory.StoryModel.InteractableObjects = new List<Model.InteractableObject>();
+                        this.MapStory.Story = new Model.Story();
+                        this.MapStory.Map = new Model.Map();
+                        this.MapStory.Story.InteractableObjects = new List<Model.InteractableObject>();
                         this.MapStory = await JSONtoModels(file);
-                        ErrorMessage = this.MapStory.StoryModel.Title;
+                        ErrorMessage = this.MapStory.Story.Title;
                     }
 
                     else
@@ -65,6 +65,7 @@ namespace RPGDialogWriterUWP.ViewModel
                 ErrorMessage = "Error, no file is found.";
                 //this.textBlock.Text = "Operation cancelled.";
             }
+            return this.MapStory;
         }
 
         private async Task<Model.MapStory> JSONtoModels(Windows.Storage.StorageFile file)
@@ -79,9 +80,9 @@ namespace RPGDialogWriterUWP.ViewModel
                 JsonObject jsonObj = new JsonObject();
                 jsonObj = JsonObject.Parse(data);
 
-                MapStory.StoryModel.Title = jsonObj.GetNamedString("title");
-                MapStory.StoryModel.Description = jsonObj.GetNamedString("description");
-                MapStory.StoryModel.Author = jsonObj.GetNamedString("author");
+                MapStory.Story.Title = jsonObj.GetNamedString("title");
+                MapStory.Story.Description = jsonObj.GetNamedString("description");
+                MapStory.Story.Author = jsonObj.GetNamedString("author");
 
                 //JsonObject, to access Json Api for Interactable Object.
                 JsonObject interactableObjects = new JsonObject();
@@ -120,7 +121,7 @@ namespace RPGDialogWriterUWP.ViewModel
                             {
                                 Model.Question questionModel = new Model.Question();
                                 questionModel.Name = dialogJsonObject.GetNamedValue("name").ToString();
-                                questionModel.Question = dialogJsonObject.GetNamedValue("question").ToString();
+                                questionModel.Text = dialogJsonObject.GetNamedValue("question").ToString();
                                 if(dialogJsonObject.ContainsKey("emote"))
                                 {
                                     questionModel.Emote = dialogJsonObject.GetNamedValue("emote").ToString();
@@ -177,7 +178,7 @@ namespace RPGDialogWriterUWP.ViewModel
                     }
 
                     //Interactable Object is filled... now it gets added into the MapStory.
-                    this.MapStory.StoryModel.InteractableObjects.Add(interactableObjectModel);
+                    this.MapStory.Story.InteractableObjects.Add(interactableObjectModel);
                 }
             }
 
