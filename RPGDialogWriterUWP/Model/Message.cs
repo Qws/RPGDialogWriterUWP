@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGDialogWriterUWP.Model
 {
-    class MessageModel
+    class Message
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -8,17 +8,17 @@ using System.Collections.ObjectModel;
 
 namespace RPGDialogWriterUWP.Model
 {
-    class InteractableObjectModel
+    class InteractableObject
     {
-        public InteractableObjectModel()
+        public InteractableObject()
         {
-            this.Branches = new ObservableCollection<BranchModel>();
+            this.Branches = new ObservableCollection<Branch>();
         }
         public string Name
         {
             get;
             set;
         }
-        public ObservableCollection<BranchModel> Branches { get; set; }
+        public ObservableCollection<Branch> Branches { get; set; }
     }
 }   

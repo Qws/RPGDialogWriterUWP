@@ -15,13 +15,13 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class MapStoryViewModel : INotifyPropertyChanged
     {
-        public Model.MapStoryModel MapStoryModel;
+        public Model.MapStory MapStoryModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MapStoryViewModel()
         {
-            MapStoryModel = new Model.MapStoryModel();
+            MapStoryModel = new Model.MapStory();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

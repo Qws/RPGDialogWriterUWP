@@ -23,7 +23,7 @@ namespace RPGDialogWriterUWP.View
     public sealed partial class InteractableObjectsMenu : Page
     {
         ViewModel.MapStoryViewModel MapStoryViewModel;
-        Model.StoryModel storyModel = new Model.StoryModel();
+        Model.Story storyModel = new Model.Story();
 
         public InteractableObjectsMenu()
         {
@@ -40,11 +40,11 @@ namespace RPGDialogWriterUWP.View
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if(e.Parameter is Model.MapStoryModel)
+            if(e.Parameter is Model.MapStory)
             {
                 Windows.UI.Popups.MessageDialog messageDialog = new Windows.UI.Popups.MessageDialog("Ye! It's a StoryModel!");
                 await messageDialog.ShowAsync();
-                this.storyModel = e.Parameter as Model.StoryModel;
+                this.storyModel = e.Parameter as Model.Story;
             }
 
             else

@@ -15,15 +15,15 @@ namespace RPGDialogWriterUWP.ViewModel
     {
         public string Title { get; set; }
         public string ErrorMessage { get; set; }
-        public Model.MapStoryModel MapStory { get; set; }
+        public Model.MapStory MapStory { get; set; }
 
-        public delegate void ChangeWindowDelegate(Model.MapStoryModel mapStoryModel);
+        public delegate void ChangeWindowDelegate(Model.MapStory mapStoryModel);
         public ChangeWindowDelegate changeWindowDelegate;
 
 
         public LoadJSONViewModel()
         {
-            MapStory = new Model.MapStoryModel();
+            MapStory = new Model.MapStory();
         }
 
         public async void StartFilePicker()
@@ -42,9 +42,9 @@ namespace RPGDialogWriterUWP.ViewModel
                     if (MapStory != null)
                     {
 
-                        this.MapStory.StoryModel = new Model.StoryModel();
-                        this.MapStory.MapModel = new Model.MapModel();
-                        this.MapStory.StoryModel.InteractableObjects = new List<Model.InteractableObjectModel>();
+                        this.MapStory.StoryModel = new Model.Story();
+                        this.MapStory.MapModel = new Model.Map();
+                        this.MapStory.StoryModel.InteractableObjects = new List<Model.InteractableObject>();
                         this.MapStory = await JSONtoModels(file);
                         ErrorMessage = this.MapStory.StoryModel.Title;
                     }
@@ -67,10 +67,10 @@ namespace RPGDialogWriterUWP.ViewModel
             }
         }
 
-        private async Task<Model.MapStoryModel> JSONtoModels(Windows.Storage.StorageFile file)
+        private async Task<Model.MapStory> JSONtoModels(Windows.Storage.StorageFile file)
         {
-            Model.StoryModel storyModel = new Model.StoryModel();
-            Model.MapModel mapModel = new Model.MapModel();
+            Model.Story storyModel = new Model.Story();
+            Model.Map mapModel = new Model.Map();
 
             var dialog = new MessageDialog("");
             if (file != null)
@@ -91,7 +91,7 @@ namespace RPGDialogWriterUWP.ViewModel
                 foreach (var obj in interactableObjects)
                 {
 
-                    Model.InteractableObjectModel interactableObjectModel = new Model.InteractableObjectModel();
+                    Model.InteractableObject interactableObjectModel = new Model.InteractableObject();
 
                     //Interactable Object (characters, enemies, bosses, friends, talking chair, etc)
                     interactableObjectModel.Name = obj.Key;
@@ -101,7 +101,7 @@ namespace RPGDialogWriterUWP.ViewModel
                     foreach(var branch in jsonInteracatbleObject)
                     {
                         //Branch has a name.
-                        Model.BranchModel branchModel = new Model.BranchModel();
+                        Model.Branch branchModel = new Model.Branch();
                         branchModel.Name = branch.Key;
                         JsonObject jsonObjBranch = new JsonObject();
                         jsonObjBranch = JsonObject.Parse(branch.Value.ToString());
@@ -118,7 +118,7 @@ namespace RPGDialogWriterUWP.ViewModel
 
                             if(dialogJsonObject.ContainsKey("question"))
                             {
-                                Model.QuestionModel questionModel = new Model.QuestionModel();
+                                Model.Question questionModel = new Model.Question();
                                 questionModel.Name = dialogJsonObject.GetNamedValue("name").ToString();
                                 questionModel.Question = dialogJsonObject.GetNamedValue("question").ToString();
                                 if(dialogJsonObject.ContainsKey("emote"))
@@ -132,7 +132,7 @@ namespace RPGDialogWriterUWP.ViewModel
                                     foreach (var choiceJson in jsonObjChoices)
                                     {
                                         JsonObject jsonObjectChoice = JsonObject.Parse(choiceJson.Value.ToString());
-                                        Model.ChoiceModel choiceModel = new Model.ChoiceModel();
+                                        Model.Choice choiceModel = new Model.Choice();
                                         choiceModel.Name = jsonObjectChoice.GetNamedValue("name").ToString();
 
                                         //Recommend to have this... if it's empty, make a notification in the GUI.
@@ -200,7 +200,7 @@ namespace RPGDialogWriterUWP.ViewModel
             {
                 dialog = new MessageDialog("Error, MapStory is null!");
                 await dialog.ShowAsync();
-                MapStory = new Model.MapStoryModel();
+                MapStory = new Model.MapStory();
                 return MapStory;
             }
         }

@@ -10,25 +10,9 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class InteractableObjectsViewModel
     {
-        private Model.StoryModel storyChapterModel;
-        private Model.MapModel mapModel;
-        private List<Model.InteractableObjectModel> interactableObjectModels = new List<Model.InteractableObjectModel>();
-
-        public delegate void DelegateInteractableObject();
-        public DelegateInteractableObject InteractableObjectCommand;
-
         public InteractableObjectsViewModel()
         {
-            
-        }
-        
-        public void GoToInteractObjectPage()
-        {
 
-        }
-
-        private void FillDataWithJSON()
-        {
         }
     }
 }
