@@ -16,16 +16,19 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock FontSize="40" Text="{x:Bind ioVM.MapStoryTitle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="40" Text="{x:Bind ioVM.MapStoryTitle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="15" Text="{x:Bind ioVM.Description}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-            <TextBlock FontSize="20" Text="Interactable Objects" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="20" Text="Interactable Objects" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView x:Name="ListViewInteractableObjects" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}" >
+            <ListView x:Name="ListViewInteractableObjects" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="localModels:InteractableObject">
                         <StackPanel>
-                            <TextBox Text="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

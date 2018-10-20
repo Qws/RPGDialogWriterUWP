@@ -33,6 +33,17 @@ namespace RPGDialogWriterUWP.ViewModel
             }
         }
 
+        private string description;
+        public string Description
+        {
+            get { return this.description; }
+            set
+            {
+                this.description = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         public InteractableObjectsViewModel()
         {
             
@@ -47,6 +58,7 @@ namespace RPGDialogWriterUWP.ViewModel
                 this.InteractableObjects.Add(obj);
             }
             this.MapStoryTitle = pSelectedMapStory.Story.Title;
+            this.description = pSelectedMapStory.Story.Description;
         }
     }
 }
