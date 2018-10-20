@@ -10,7 +10,10 @@ namespace RPGDialogWriterUWP.Model
     {
         public InteractableObject()
         {
-            this.Branches = new List<Branch>();
+            if(Branches == null)
+            {
+                Branches = new List<Branch>();
+            }
         }
         public string Name
         {

@@ -11,6 +11,49 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class InteractableObjectsViewModel : BaseViewModel
     {
+        private ObservableCollection<Model.Branch> branches;
+        public ObservableCollection<Model.Branch> Branches
+        {
+            get { return this.branches; }
+            set
+            {
+                this.branches = value;
+                this.OnPropertyChanged("branches");
+            }
+        }
+
+        private Model.InteractableObject selectedInteractableObject;
+        public Model.InteractableObject SelectedInteractableObject
+        {
+            get {return selectedInteractableObject; }
+            set
+            {
+                if (this.selectedInteractableObject != null)
+                {
+
+                    if (this.selectedInteractableObject.Branches != null)
+                    {
+                        if (this.selectedInteractableObject.Branches.Count > 0)
+                        {
+                            this.branches = new ObservableCollection<Model.Branch>();
+                            foreach (var branch in this.selectedInteractableObject.Branches)
+                            {
+                                this.Branches.Add(branch);
+                            }
+                        }
+                    }
+
+                    this.selectedInteractableObject = value;
+                    this.OnPropertyChanged("selectedInteractableObjects");
+                }
+                else
+                {
+                    this.selectedInteractableObject = value;
+                    this.OnPropertyChanged("selectedInteractableObjects");
+                }
+            }
+        }
+
         private ObservableCollection<Model.InteractableObject> interactableObjects;
         public ObservableCollection<Model.InteractableObject> InteractableObjects
         {
@@ -52,6 +95,13 @@ namespace RPGDialogWriterUWP.ViewModel
         public InteractableObjectsViewModel(Model.MapStory pSelectedMapStory)
         {
             InteractableObjects = new ObservableCollection<Model.InteractableObject>();
+            Branches = new ObservableCollection<Model.Branch>();
+            if(selectedInteractableObject == null)
+            {
+                this.selectedInteractableObject = new Model.InteractableObject();
+                SelectedInteractableObject = new Model.InteractableObject();
+            }
+
             this.SelectedMapStory = pSelectedMapStory;
             foreach (var obj in pSelectedMapStory.Story.InteractableObjects)
             {

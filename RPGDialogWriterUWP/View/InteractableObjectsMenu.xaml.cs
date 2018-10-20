@@ -59,5 +59,10 @@ namespace RPGDialogWriterUWP.View
         {
             Frame.Navigate(typeof(MainPage));
         }
+
+        private void ListViewInteractableObjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.ioVM.SelectedInteractableObject = (sender as ListView).SelectedItem as Model.InteractableObject;
+        }
     }
 }

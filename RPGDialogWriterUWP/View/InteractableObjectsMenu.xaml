@@ -20,20 +20,36 @@
                 <TextBlock FontSize="40" Text="{x:Bind ioVM.MapStoryTitle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock FontSize="15" Text="{x:Bind ioVM.Description}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <TextBlock FontSize="20" Text="Interactable Objects" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView x:Name="ListViewInteractableObjects" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="localModels:InteractableObject">
-                        <StackPanel>
-                            <TextBlock Text="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock FontSize="20" Text="Interactable Objects:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <GridView x:Name="ListViewInteractableObjects" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}" HorizontalAlignment="Center"
+                              SelectedItem="{x:Bind ioVM.SelectedInteractableObject, Mode=TwoWay, FallbackValue='somethingbad', UpdateSourceTrigger=LostFocus}"
+                              SelectionMode="Single">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="localModels:InteractableObject">
+                                <TextBox Text="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"/>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <Button Content="Add" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock FontSize="18" Text="Branches:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ListView x:Name="ListBranches" ItemsSource="{x:Bind ioVM.Branches, Mode=TwoWay}" HorizontalAlignment="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="localModels:Branch">
+                                <StackPanel>
+                                    <Button Content="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
             <Button Name="btnBack" Content="Back" Width="100" FontSize="30" HorizontalAlignment="Center" Click="btnBack_Click"/>
