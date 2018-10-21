@@ -11,6 +11,26 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class InteractableObjectsViewModel : BaseViewModel
     {
+        private string newIOName;
+        public string NewIOName
+        {
+            get
+            {
+                return this.newIOName;
+            }
+            set
+            {
+                this.newIOName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public void AddInteractableObject()
+        {
+            Model.InteractableObject newIO = new Model.InteractableObject();
+            newIO.Name = NewIOName;
+            InteractableObjects.Add(newIO);
+        }
 
         private Model.Branch selectedBranch;
         public Model.Branch SelectedBranch

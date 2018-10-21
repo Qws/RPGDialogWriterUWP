@@ -86,5 +86,18 @@ namespace RPGDialogWriterUWP.View
             ioVM.SelectedBranch = btnSender.DataContext as Model.Branch;
             this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
         }
+
+
+        private void BtnToggleAddIOGUI_Click(object sender, RoutedEventArgs e)
+        {
+            if (StackPanelNewIOGUI.Visibility == Visibility.Collapsed)
+            {
+                this.StackPanelNewIOGUI.Visibility= Visibility.Visible;
+            }
+            else
+            {
+                this.StackPanelNewIOGUI.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

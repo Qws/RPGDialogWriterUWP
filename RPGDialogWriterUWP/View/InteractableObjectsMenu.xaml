@@ -25,7 +25,21 @@
         <Grid Grid.Row="1">
             <StackPanel>
                 <StackPanel>
+  
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="BtnToggleAddIOGUI" Content="New" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"
+                                Click="BtnToggleAddIOGUI_Click"/>
+                        <StackPanel Name="StackPanelNewIOGUI" Visibility="Collapsed" Orientation="Horizontal">
+                            <TextBox Name="TextBoxNameOfNewIO" FontSize="20" HorizontalAlignment="Center"
+                                 Width="300" Height="50"
+                                 Text="{x:Bind ioVM.NewIOName,Mode=TwoWay}"/>
+                            <Button Name="BtnAddIO" Click="{x:Bind ioVM.AddInteractableObject}" HorizontalAlignment="Center" Content="+" Width="50" Height="50"/>
+                        </StackPanel>
+                    </StackPanel>
+
                     <TextBlock FontSize="20" Text="Interactable Objects:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
                     <GridView x:Name="GridViewInteractableObject" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}" HorizontalAlignment="Center"
                               SelectedItem="{x:Bind ioVM.SelectedInteractableObject, Mode=TwoWay}"
                               SelectionMode="Single">
@@ -37,7 +51,6 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <Button Content="Add" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock FontSize="18" Text="Branches:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
