@@ -62,7 +62,7 @@ namespace RPGDialogWriterUWP.View
             }
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
         }
@@ -72,7 +72,7 @@ namespace RPGDialogWriterUWP.View
             this.ioVM.SelectedInteractableObject = (sender as ListView).SelectedItem as Model.InteractableObject;
         }
 
-        private void btnSelectInteractableObject_Click(object sender, RoutedEventArgs e)
+        private void BtnSelectInteractableObject_Click(object sender, RoutedEventArgs e)
         {
             Button btnSender = sender as Button;
             ioVM.SelectedInteractableObject = btnSender.DataContext as Model.InteractableObject;
@@ -97,6 +97,23 @@ namespace RPGDialogWriterUWP.View
             else
             {
                 this.StackPanelNewIOGUI.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BtnRemoveIO_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem btnsender = sender as MenuFlyoutItem;
+            Model.InteractableObject ioremoving = btnsender.DataContext as Model.InteractableObject;
+            ioVM.RemoveInteractableObject(ioremoving);
+        }
+        
+
+        private void BtnSelectInteractableObject_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+            if (element != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(element);
             }
         }
     }

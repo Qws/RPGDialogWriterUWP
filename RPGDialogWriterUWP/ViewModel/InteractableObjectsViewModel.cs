@@ -32,6 +32,16 @@ namespace RPGDialogWriterUWP.ViewModel
             InteractableObjects.Add(newIO);
         }
 
+        public void RemoveInteractableObject(Model.InteractableObject removingIO)
+        {
+            if(removingIO != null)
+            {
+
+                this.interactableObjects.Remove(removingIO);
+
+            }
+        }
+
         private Model.Branch selectedBranch;
         public Model.Branch SelectedBranch
         {

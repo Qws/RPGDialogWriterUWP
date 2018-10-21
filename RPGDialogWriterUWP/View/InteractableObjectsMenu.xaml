@@ -45,9 +45,16 @@
                               SelectionMode="Single">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="localModels:InteractableObject">
-                                <Button Name="btnSelectInteractableObject" Content="{x:Bind Name}"
+                                <Button Name="BtnSelectInteractableObject" Content="{x:Bind Name}"
                                         FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"
-                                        Click="btnSelectInteractableObject_Click"/>
+                                        Click="BtnSelectInteractableObject_Click" RightTapped="BtnSelectInteractableObject_RightTapped">
+                                    <FlyoutBase.AttachedFlyout>
+                                        <MenuFlyout x:Name="IOFlyOutMenu">
+                                            
+                                            <MenuFlyoutItem Click="BtnRemoveIO_Click" Name="BtnRemoveIO" Text="Remove"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.AttachedFlyout>
+                                </Button>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -70,7 +77,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Name="btnBack" Content="Back" Width="100" FontSize="30" HorizontalAlignment="Center" Click="btnBack_Click"/>
+            <Button Name="btnBack" Content="Back" Width="100" FontSize="30" HorizontalAlignment="Center" Click="BtnBack_Click"/>
         </Grid>
     </Grid>
 </Page>
