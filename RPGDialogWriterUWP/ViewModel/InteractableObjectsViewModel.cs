@@ -72,20 +72,27 @@ namespace RPGDialogWriterUWP.ViewModel
                     this.selectedInteractableObject = value;
                     this.OnPropertyChanged("SelectedInteractableObjects");
 
+                    if (Branches == null)
+                    {
+                        Branches = new ObservableCollection<Model.Branch>();
+                    }
 
                     if (this.selectedInteractableObject.Branches != null)
                     {
                         if (this.selectedInteractableObject.Branches.Count > 0)
                         {
-                            if(Branches == null)
-                            {
-                                Branches = new ObservableCollection<Model.Branch>();
-                            }
+                            
+                            //Clearing the Branches so it won't stack each time the selected Interactable Object changes..
                             this.Branches.Clear();
                             foreach (var branch in this.selectedInteractableObject.Branches)
                             {
                                 this.Branches.Add(branch);
                             }
+                        }
+                        else
+                        {
+                            //There is no branches, so it will be cleared.
+                            this.Branches.Clear();
                         }
                     }
                     
