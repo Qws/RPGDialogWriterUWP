@@ -75,9 +75,8 @@ namespace RPGDialogWriterUWP.View
         private void btnSelectInteractableObject_Click(object sender, RoutedEventArgs e)
         {
             Button btnSender = sender as Button;
-            btnSender.Focus(FocusState.Pointer);
             ioVM.SelectedInteractableObject = btnSender.DataContext as Model.InteractableObject;
-            //this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
+            this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
 
         }
     }
