@@ -11,6 +11,18 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class InteractableObjectsViewModel : BaseViewModel
     {
+
+        private Model.Branch selectedBranch;
+        public Model.Branch SelectedBranch
+        {
+            get { return this.selectedBranch; }
+            set
+            {
+                this.selectedBranch = value;
+                this.OnPropertyChanged("SelectedBranch");
+            }
+        }
+
         private ObservableCollection<Model.Branch> branches;
         public ObservableCollection<Model.Branch> Branches
         {

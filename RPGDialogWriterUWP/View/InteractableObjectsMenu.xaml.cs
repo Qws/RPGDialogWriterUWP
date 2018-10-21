@@ -79,5 +79,12 @@ namespace RPGDialogWriterUWP.View
             this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
 
         }
+
+        private void BtnSelectedBranch_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnSender = sender as Button;
+            ioVM.SelectedBranch = btnSender.DataContext as Model.Branch;
+            this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
+        }
     }
 }
