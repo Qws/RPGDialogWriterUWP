@@ -9,8 +9,9 @@ namespace RPGDialogWriterUWP.Model
     class Choice
     {
         public string Name { get; set; }
+        public string Text { get; set; }
         public string Description { get; set; }
-        public string Target { get; set; }
+        public string Function { get; set; }
         public string Branch { get; set; }
     }
 }

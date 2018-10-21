@@ -145,7 +145,7 @@ namespace RPGDialogWriterUWP.ViewModel
                                         //Target is optional.
                                         if (jsonObjectChoice.ContainsKey("target"))
                                         {
-                                            choiceModel.Target = jsonObjectChoice.GetNamedValue("target").ToString();
+                                            choiceModel.Function = jsonObjectChoice.GetNamedValue("target").ToString();
                                         }
                                         //Branch is optional... what's the real difference tho?
                                         if (jsonObjectChoice.ContainsKey("branch"))
