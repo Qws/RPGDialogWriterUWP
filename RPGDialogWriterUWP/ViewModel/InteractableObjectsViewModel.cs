@@ -18,38 +18,49 @@ namespace RPGDialogWriterUWP.ViewModel
             set
             {
                 this.branches = value;
-                this.OnPropertyChanged("branches");
+                this.OnPropertyChanged();
             }
         }
 
         private Model.InteractableObject selectedInteractableObject;
         public Model.InteractableObject SelectedInteractableObject
         {
-            get {return selectedInteractableObject; }
+            get
+            {
+                if(this.selectedInteractableObject == null)
+                {
+                    return new Model.InteractableObject();
+                }
+                return selectedInteractableObject;
+            }
             set
             {
-                if (this.selectedInteractableObject != null)
+                if (value != null)
                 {
+                    this.selectedInteractableObject = value;
+                    this.OnPropertyChanged("SelectedInteractableObjects");
+
 
                     if (this.selectedInteractableObject.Branches != null)
                     {
                         if (this.selectedInteractableObject.Branches.Count > 0)
                         {
-                            this.branches = new ObservableCollection<Model.Branch>();
+                            if(Branches == null)
+                            {
+                                Branches = new ObservableCollection<Model.Branch>();
+                            }
+                            this.Branches.Clear();
                             foreach (var branch in this.selectedInteractableObject.Branches)
                             {
                                 this.Branches.Add(branch);
                             }
                         }
                     }
-
-                    this.selectedInteractableObject = value;
-                    this.OnPropertyChanged("selectedInteractableObjects");
-                }
-                else
-                {
-                    this.selectedInteractableObject = value;
-                    this.OnPropertyChanged("selectedInteractableObjects");
+                    
+                    else
+                    {
+                        this.selectedInteractableObject.Branches = new List<Model.Branch>();
+                    }
                 }
             }
         }
@@ -61,7 +72,7 @@ namespace RPGDialogWriterUWP.ViewModel
             set
             {
                 this.interactableObjects = value;
-                this.OnPropertyChanged("interactableObjects");
+                this.OnPropertyChanged("InteractableObjects");
             }
         }
 
@@ -72,7 +83,7 @@ namespace RPGDialogWriterUWP.ViewModel
             set
             {
                 this.mapStoryTitle = value;
-                this.OnPropertyChanged("mapStoryTitle");
+                this.OnPropertyChanged("MapStoryTitle");
             }
         }
 
@@ -95,12 +106,7 @@ namespace RPGDialogWriterUWP.ViewModel
         public InteractableObjectsViewModel(Model.MapStory pSelectedMapStory)
         {
             InteractableObjects = new ObservableCollection<Model.InteractableObject>();
-            Branches = new ObservableCollection<Model.Branch>();
-            if(selectedInteractableObject == null)
-            {
-                this.selectedInteractableObject = new Model.InteractableObject();
-                SelectedInteractableObject = new Model.InteractableObject();
-            }
+            //Branches = new ObservableCollection<Model.Branch>();
 
             this.SelectedMapStory = pSelectedMapStory;
             foreach (var obj in pSelectedMapStory.Story.InteractableObjects)
@@ -109,6 +115,7 @@ namespace RPGDialogWriterUWP.ViewModel
             }
             this.MapStoryTitle = pSelectedMapStory.Story.Title;
             this.description = pSelectedMapStory.Story.Description;
+            this.SelectedInteractableObject = this.interactableObjects[0];
         }
     }
 }

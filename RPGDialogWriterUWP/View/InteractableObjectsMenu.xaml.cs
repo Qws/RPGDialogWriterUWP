@@ -26,7 +26,14 @@ namespace RPGDialogWriterUWP.View
 
         public InteractableObjectsMenu()
         {
-            ioVM = new ViewModel.InteractableObjectsViewModel();
+            if(ioVM == null)
+            {
+                ioVM = new ViewModel.InteractableObjectsViewModel();
+                ioVM.InteractableObjects = new System.Collections.ObjectModel.ObservableCollection<Model.InteractableObject>();
+                ioVM.SelectedInteractableObject = new Model.InteractableObject();
+            }
+            //ioVM = new ViewModel.InteractableObjectsViewModel();
+            
             //InteractableObjectsViewModel = new ViewModel.InteractableObjectsViewModel();
             //InteractableObjectsViewModel.InteractableObjectCommand = () => 
             //{
@@ -41,9 +48,9 @@ namespace RPGDialogWriterUWP.View
             base.OnNavigatedTo(e);
             if(e.Parameter is Model.MapStory)
             {
-
                 ioVM = new ViewModel.InteractableObjectsViewModel(e.Parameter as Model.MapStory);
-                
+                var objWtfiSThis = GridViewInteractableObject.SelectedItem;
+
             }
 
             else
@@ -63,6 +70,15 @@ namespace RPGDialogWriterUWP.View
         private void ListViewInteractableObjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.ioVM.SelectedInteractableObject = (sender as ListView).SelectedItem as Model.InteractableObject;
+        }
+
+        private void btnSelectInteractableObject_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnSender = sender as Button;
+            btnSender.Focus(FocusState.Pointer);
+            ioVM.SelectedInteractableObject = btnSender.DataContext as Model.InteractableObject;
+            //this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
+
         }
     }
 }

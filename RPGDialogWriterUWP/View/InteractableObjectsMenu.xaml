@@ -26,12 +26,14 @@
             <StackPanel>
                 <StackPanel>
                     <TextBlock FontSize="20" Text="Interactable Objects:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <GridView x:Name="ListViewInteractableObjects" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}" HorizontalAlignment="Center"
-                              SelectedItem="{x:Bind ioVM.SelectedInteractableObject, Mode=TwoWay, FallbackValue='somethingbad', UpdateSourceTrigger=LostFocus}"
+                    <GridView x:Name="GridViewInteractableObject" ItemsSource="{x:Bind ioVM.InteractableObjects, Mode=OneWay}" HorizontalAlignment="Center"
+                              SelectedItem="{x:Bind ioVM.SelectedInteractableObject, Mode=TwoWay}"
                               SelectionMode="Single">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="localModels:InteractableObject">
-                                <TextBox Text="{x:Bind Name}" FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"/>
+                                <Button Name="btnSelectInteractableObject" Content="{x:Bind Name}"
+                                        FontSize="20" HorizontalAlignment="Center" Width="300" Height="50"
+                                        Click="btnSelectInteractableObject_Click"/>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -39,7 +41,8 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBlock FontSize="18" Text="Branches:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <ListView x:Name="ListBranches" ItemsSource="{x:Bind ioVM.Branches, Mode=TwoWay}" HorizontalAlignment="Center">
+                    <ListView x:Name="ListBranches" ItemsSource="{x:Bind ioVM.Branches, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              HorizontalAlignment="Center">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="localModels:Branch">
                                 <StackPanel>
