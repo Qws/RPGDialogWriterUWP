@@ -84,7 +84,7 @@ namespace RPGDialogWriterUWP.View
         {
             Button btnSender = sender as Button;
             ioVM.SelectedBranch = btnSender.DataContext as Model.Branch;
-            this.GridViewInteractableObject.SelectedItem = btnSender.DataContext;
+            this.ListBranches.SelectedItem = btnSender.DataContext;
         }
 
 
@@ -115,6 +115,11 @@ namespace RPGDialogWriterUWP.View
             {
                 FlyoutBase.ShowAttachedFlyout(element);
             }
+        }
+
+        private void BtnAddNewBranch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

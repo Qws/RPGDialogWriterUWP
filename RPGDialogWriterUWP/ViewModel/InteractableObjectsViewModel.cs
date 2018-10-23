@@ -11,6 +11,20 @@ namespace RPGDialogWriterUWP.ViewModel
 {
     class InteractableObjectsViewModel : BaseViewModel
     {
+        private string newBranchName;
+        public string NewBranchName
+        {
+            get
+            {
+                return this.newBranchName;
+            }
+            set
+            {
+                this.newBranchName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         private string newIOName;
         public string NewIOName
         {
@@ -40,6 +54,14 @@ namespace RPGDialogWriterUWP.ViewModel
                 this.interactableObjects.Remove(removingIO);
 
             }
+        }
+
+        public void AddBranch()
+        {
+            Model.Branch newlyAddedBranch = new Model.Branch();
+            newlyAddedBranch.Name = this.NewBranchName;
+            newlyAddedBranch.Messages = new List<Model.Message>();
+            Branches.Add(newlyAddedBranch);
         }
 
         private Model.Branch selectedBranch;
