@@ -62,6 +62,7 @@ namespace RPGDialogWriterUWP.ViewModel
             newlyAddedBranch.Name = this.NewBranchName;
             newlyAddedBranch.Messages = new List<Model.Message>();
             Branches.Add(newlyAddedBranch);
+            this.SelectedInteractableObject.Branches.Add(newlyAddedBranch);
         }
 
         private Model.Branch selectedBranch;
