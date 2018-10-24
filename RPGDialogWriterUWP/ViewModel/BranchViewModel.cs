@@ -24,6 +24,27 @@ namespace RPGDialogWriterUWP.ViewModel
             }
         }
 
+        private Model.Message selectedMessage;
+        public Model.Message SelectedMessage
+        {
+            get
+            {
+                if(selectedMessage != null)
+                {
+                    return this.selectedMessage;
+                }
+                else
+                {
+                    return new Model.Message();
+                }
+            }
+            set
+            {
+                selectedMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Model.Branch currentBranch;
         public Model.Branch CurrentBranch
         {

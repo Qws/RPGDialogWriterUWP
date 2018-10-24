@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RPGDialogWriterUWP.View"
+    xmlns:localModels="using:RPGDialogWriterUWP.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -12,6 +13,22 @@
     <Grid>
         <Grid>
             <TextBlock Text="{x:Bind BVM.Title}" HorizontalAlignment="Center" FontSize="20"/>
+        </Grid>
+        <Grid>
+            <ListView Name="ListViewMessages"
+                      ItemsSource="{x:Bind BVM.MessageList}"
+                      SelectedItem="{x:Bind BVM.SelectedMessage}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="localModels:Message">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Text="{x:Bind Name}" />
+                            <TextBox Text="{x:Bind Text}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+   
+                <ListViewItem />
+            </ListView>
         </Grid>
         <Grid>
             <Button Content="Back" Name="BtnBack" Tapped="BtnBack_Tapped" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
