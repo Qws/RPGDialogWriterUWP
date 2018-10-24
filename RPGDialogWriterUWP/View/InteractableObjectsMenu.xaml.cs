@@ -121,5 +121,21 @@ namespace RPGDialogWriterUWP.View
         {
 
         }
+
+        private void BtnRemoveBranch_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem senderButton = sender as MenuFlyoutItem;
+            ioVM.RemoveBranch(senderButton.DataContext as Model.Branch);
+        }
+        
+        private void BtnSelectedBranch_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+
+            FrameworkElement element = sender as FrameworkElement;
+            if (element != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(element);
+            }
+        }
     }
 }

@@ -65,6 +65,12 @@ namespace RPGDialogWriterUWP.ViewModel
             this.SelectedInteractableObject.Branches.Add(newlyAddedBranch);
         }
 
+        public void RemoveBranch(Model.Branch rmBranch)
+        {
+            this.SelectedInteractableObject.Branches.Remove(rmBranch);
+            this.Branches.Remove(rmBranch);
+        }
+
         private Model.Branch selectedBranch;
         public Model.Branch SelectedBranch
         {
