@@ -11,5 +11,6 @@ namespace RPGDialogWriterUWP.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Emote { get; set; }
+        public string Text { get; set; }
     }
 }

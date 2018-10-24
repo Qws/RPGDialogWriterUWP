@@ -103,6 +103,7 @@ namespace RPGDialogWriterUWP.ViewModel
                     {
                         //Branch has a name.
                         Model.Branch branchModel = new Model.Branch();
+                        branchModel.Messages = new List<Model.Message>();
                         branchModel.Name = branch.Key;
                         JsonObject jsonObjBranch = new JsonObject();
                         jsonObjBranch = JsonObject.Parse(branch.Value.ToString());
@@ -117,12 +118,13 @@ namespace RPGDialogWriterUWP.ViewModel
                         {
                             JsonObject dialogJsonObject = JsonObject.Parse(dialogJson.Value.ToString());
 
-                            if(dialogJsonObject.ContainsKey("question"))
+                            if (dialogJsonObject.ContainsKey("question"))
                             {
                                 Model.Question questionModel = new Model.Question();
+                                questionModel.Choices = new List<Model.Choice>();
                                 questionModel.Name = dialogJsonObject.GetNamedValue("name").ToString();
                                 questionModel.Text = dialogJsonObject.GetNamedValue("question").ToString();
-                                if(dialogJsonObject.ContainsKey("emote"))
+                                if (dialogJsonObject.ContainsKey("emote"))
                                 {
                                     questionModel.Emote = dialogJsonObject.GetNamedValue("emote").ToString();
                                 }
@@ -137,7 +139,7 @@ namespace RPGDialogWriterUWP.ViewModel
                                         choiceModel.Name = jsonObjectChoice.GetNamedValue("name").ToString();
 
                                         //Recommend to have this... if it's empty, make a notification in the GUI.
-                                        if(jsonObjChoices.ContainsKey("description"))
+                                        if (jsonObjChoices.ContainsKey("description"))
                                         {
 
                                             choiceModel.Description = jsonObjectChoice.GetNamedValue("description").ToString();
@@ -152,13 +154,43 @@ namespace RPGDialogWriterUWP.ViewModel
                                         {
                                             choiceModel.Branch = jsonObjectChoice.GetNamedValue("branch").ToString();
                                         }
+                                        questionModel.Choices.Add(choiceModel);
                                     }
+                                    branchModel.Messages.Add(questionModel);
                                 }
                                 else
                                 {
                                     MessageDialog msgbox = new MessageDialog("Error! There should be Choices jsonObject in the question JsonObject.");
                                     await msgbox.ShowAsync();
                                 }
+                            }
+
+                            else
+                            {
+                                Model.Message message = new Model.Message();
+                                if(dialogJsonObject.ContainsKey("name"))
+                                {
+                                    message.Name = dialogJsonObject.GetNamedValue("name").ToString();
+                                }
+                                else
+                                {
+                                    message.Name = "No name found?!";
+                                }
+
+                                if(dialogJsonObject.ContainsKey("message"))
+                                {
+
+                                    message.Text = dialogJsonObject.GetNamedValue("message").ToString();
+                                }
+                                else
+                                {
+                                    message.Text = "";
+                                }
+                                if(dialogJsonObject.ContainsKey("emote"))
+                                {
+                                    message.Emote = dialogJsonObject.GetNamedValue("emote").ToString();
+                                }
+                                branchModel.Messages.Add(message);
                             }
 
                             if (int.TryParse(dialogJson.Key, out int dialognumber))
