@@ -75,6 +75,7 @@ namespace RPGDialogWriterUWP.ViewModel
             }
         }
 
+        //This is the Branches of the current selected Interactable Object.
         private ObservableCollection<Model.Branch> branches;
         public ObservableCollection<Model.Branch> Branches
         {
@@ -102,37 +103,33 @@ namespace RPGDialogWriterUWP.ViewModel
                 if (value != null)
                 {
                     this.selectedInteractableObject = value;
-                    this.OnPropertyChanged("SelectedInteractableObjects");
 
-                    if (Branches == null)
+                    if (this.selectedInteractableObject.Branches == null)
                     {
-                        Branches = new ObservableCollection<Model.Branch>();
+                        this.selectedInteractableObject.Branches = new List<Model.Branch>();
                     }
 
-                    if (this.selectedInteractableObject.Branches != null)
+                    if (this.Branches != null)
                     {
+                        //Clearing the Branches so it won't stack each time the selected Interactable Object changes..
+                        this.Branches.Clear();
+                        //Updating the observed Branch.
                         if (this.selectedInteractableObject.Branches.Count > 0)
                         {
-                            
-                            //Clearing the Branches so it won't stack each time the selected Interactable Object changes..
-                            this.Branches.Clear();
                             foreach (var branch in this.selectedInteractableObject.Branches)
                             {
                                 this.Branches.Add(branch);
                             }
                         }
-                        else
-                        {
-                            //There is no branches, so it will be cleared.
-                            this.Branches.Clear();
-                        }
                     }
-                    
                     else
                     {
-                        this.selectedInteractableObject.Branches = new List<Model.Branch>();
+                        this.Branches = new ObservableCollection<Model.Branch>();
                     }
+                    this.OnPropertyChanged("SelectedInteractableObjects");
                 }
+                
+
             }
         }
 
