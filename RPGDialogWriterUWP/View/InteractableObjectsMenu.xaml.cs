@@ -85,6 +85,10 @@ namespace RPGDialogWriterUWP.View
             Button btnSender = sender as Button;
             ioVM.SelectedBranch = btnSender.DataContext as Model.Branch;
             this.ListBranches.SelectedItem = btnSender.DataContext;
+            object[] parameter = new object[2];
+            parameter[0] = ioVM.SelectedMapStory;
+            parameter[1] = ioVM.SelectedBranch;
+            Frame.Navigate(typeof(View.BranchEditor), parameter);
         }
 
 

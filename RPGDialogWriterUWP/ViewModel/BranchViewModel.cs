@@ -52,7 +52,13 @@ namespace RPGDialogWriterUWP.ViewModel
             this.SelectedMapStory = pMapStory;
             this.CurrentBranch = pBranch;
             var message = new Model.Message();
-            foreach (var m in currentBranch.Messages)
+
+            if(CurrentBranch.Messages == null)
+            {
+                CurrentBranch.Messages = new List<Model.Message>();
+            }
+
+            foreach (var m in CurrentBranch.Messages)
             {
                 if(m.GetType() == typeof(Model.Message))
                 {

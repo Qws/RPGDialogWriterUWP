@@ -30,8 +30,20 @@ namespace RPGDialogWriterUWP.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+            Model.MapStory mapStory = new Model.MapStory();
+            Model.Branch branch = new Model.Branch();
             base.OnNavigatedTo(e);
-            BVM = new ViewModel.BranchViewModel(e.Parameter as Model.MapStory, e.Parameter as Model.Branch);
+
+            if(e.Parameter.GetType() == typeof(object[]))
+            {
+                object[] parameter = e.Parameter as object[];
+                mapStory = parameter[0] as Model.MapStory;
+                branch = parameter[1] as Model.Branch;
+                
+            }
+
+            BVM = new ViewModel.BranchViewModel(mapStory, branch);
         }
     }
 }
