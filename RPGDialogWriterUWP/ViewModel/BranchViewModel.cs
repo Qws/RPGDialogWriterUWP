@@ -38,7 +38,10 @@ namespace RPGDialogWriterUWP.ViewModel
         private ObservableCollection<Model.Message> messageList;
         public ObservableCollection<Model.Message> MessageList
         {
-            get {return this.messageList; }
+            get
+            {
+                return this.messageList;
+            }
             set
             {
                 this.messageList = value;
@@ -52,6 +55,7 @@ namespace RPGDialogWriterUWP.ViewModel
             this.SelectedMapStory = pMapStory;
             this.CurrentBranch = pBranch;
             var message = new Model.Message();
+            this.MessageList = new ObservableCollection<Model.Message>();
 
             if(CurrentBranch.Messages == null)
             {
