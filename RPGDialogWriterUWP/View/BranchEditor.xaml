@@ -11,7 +11,10 @@
 
     <Grid>
         <Grid>
-            <TextBlock Text="{x:Bind BVM.Title}"/>
+            <TextBlock Text="{x:Bind BVM.Title}" HorizontalAlignment="Center" FontSize="20"/>
+        </Grid>
+        <Grid>
+            <Button Content="Back" Name="BtnBack" Tapped="BtnBack_Tapped" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </Page>

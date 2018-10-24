@@ -45,5 +45,10 @@ namespace RPGDialogWriterUWP.View
 
             BVM = new ViewModel.BranchViewModel(mapStory, branch);
         }
+
+        private void BtnBack_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(View.InteractableObjectsMenu), BVM.SelectedMapStory);
+        }
     }
 }
