@@ -11,18 +11,29 @@
     RequestedTheme="Dark">
 
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
             <TextBlock Text="{x:Bind BVM.Title}" HorizontalAlignment="Center" FontSize="20"/>
         </Grid>
-        <Grid>
+        <Grid Grid.Row="1">
             <ListView Name="ListViewMessages"
                       ItemsSource="{x:Bind BVM.MessageList}"
                       SelectedItem="{x:Bind BVM.SelectedMessage}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="localModels:Message">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Text="{x:Bind Name}" />
-                            <TextBox Text="{x:Bind Text}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Name:" />
+                                <TextBox Text="{x:Bind Name}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Text: " />
+                                <TextBox Text="{x:Bind Text}" />
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -30,7 +41,7 @@
                 <ListViewItem />
             </ListView>
         </Grid>
-        <Grid>
+        <Grid Grid.Row="2">
             <Button Content="Back" Name="BtnBack" Tapped="BtnBack_Tapped" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
